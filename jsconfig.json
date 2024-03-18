@@ -2,5 +2,5 @@
   "compilerOptions": {
     "baseUrl": "."
   },
-  "include": ["app/**/*"]
+  "include": ["pages/**/*"]
 }

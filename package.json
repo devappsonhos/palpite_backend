@@ -8,6 +8,7 @@
     "start": "node server.js",
     "dev": "npm run compose:up && next dev",
     "build": "next build",
+    "vercel-build": "echo hello",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",

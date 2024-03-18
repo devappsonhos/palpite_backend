@@ -1,3 +1,3 @@
-import appNext from '../app/app';
+import app from '../pages/app';
 
-export default appNext;
+export default app;
