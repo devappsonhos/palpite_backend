@@ -12,6 +12,7 @@ const postRouter = require('./api/v1/post')
 const statusRouter = require('./api/v1/status')
 const userRouter = require('./api/v1/user');
 
+const express = require('express')
 
 require('dotenv').config();
 
@@ -56,6 +57,3 @@ app.listen(PORT, () => {
   showRoutes()
   console.log(`_____ Resultado de Requisições _____`);
 });
-
-
-export default app;
