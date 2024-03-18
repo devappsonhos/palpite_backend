@@ -59,3 +59,6 @@ appNext.prepare().then(() => {
     console.log(`Server listening on port ${PORT}`);
   });
 });
+
+
+export default appNext

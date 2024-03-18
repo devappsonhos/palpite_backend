@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "nodedev": "npm run compose:up && node server.js",
-    "start": "NODE_ENV=production node server.js",
+    "start": "node server.js",
     "dev": "npm run compose:up && next dev",
     "build": "next build",
     "lint:check": "prettier --check .",
@@ -28,6 +28,7 @@
     "dotenv": "^16.4.5",
     "dotenv-cli": "^7.3.0",
     "express": "^4.18.3",
+    "fs": "^0.0.1-security",
     "jsonwebtoken": "^9.0.2",
     "next": "^13.5.6",
     "prisma": "^5.8.1",
