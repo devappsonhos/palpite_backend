@@ -1,28 +1,42 @@
 {
-  "name": "projetobase",
+  "name": "palpite",
   "version": "1.0.0",
   "description": "Projeto base em node, next e react",
   "main": "index.js",
   "scripts": {
+    "nodedev": "npm run compose:up && node server.js",
+    "start": "NODE_ENV=production node server.js",
     "dev": "npm run compose:up && next dev",
+    "build": "next build",
     "lint:check": "prettier --check .",
     "lint:fix": "prettier --write .",
     "test": "jest",
     "test:watch": "jest --watchAll",
     "compose:up": "docker compose -f infra/compose.yaml up -d --force-recreate",
     "compose:stop": "docker compose -f infra/compose.yaml stop",
-    "compose:down": "docker compose -f infra/compose.yaml down"
+    "compose:down": "docker compose -f infra/compose.yaml down",
+    "tw": "npm run test:watch",
+    "migrate": "npx prisma migrate dev",
+    "seed": "cd prisma && ts-node seed.ts",
+    "postinstall": "prisma generate"
   },
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "next": "^13.4.19",
-    "pg": "^8.11.3",
+    "@prisma/client": "^5.8.1",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "dotenv-cli": "^7.3.0",
+    "express": "^4.18.3",
+    "jsonwebtoken": "^9.0.2",
+    "next": "^13.5.6",
+    "prisma": "^5.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "jest": "^29.6.2",
+    "nodemon": "^3.1.0",
     "prettier": "^3.1.1"
   }
 }

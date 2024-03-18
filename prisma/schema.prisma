@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model permission {
+  id   Int    @id
+  name String
+  user user[]
+}
+
+model user {
+  id           Int        @id @default(autoincrement())
+  permissionId Int
+  permission   permission @relation(fields: [permissionId], references: [id])
+  name         String
+  email        String     @unique
+  phone        String     @unique
+  password     String
+  inactive     Boolean    @default(false)
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  client       client[]
+  bank         bank[]
+  userAuth     userAuth?
+}
+
+model userAuth {
+  refreshToken String @id
+  userId       Int    @unique
+  user         user   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model bank {
+  id        Int      @id @default(autoincrement())
+  adminId   Int
+  user      user     @relation(fields: [adminId], references: [id])
+  name      String
+  city      String
+  state     String
+  group     String?
+  inactive  Boolean  @default(false)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  post      post[]
+}
+
+model client {
+  id           Int            @id @default(autoincrement())
+  userId       Int
+  user         user           @relation(fields: [userId], references: [id])
+  name         String
+  email        String?
+  phone        String?
+  inactive     Boolean        @default(false)
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  client_dream client_dream[]
+  guess        guess[]
+}
+
+model dream {
+  id           Int            @id @default(autoincrement())
+  dream        String
+  terms        String
+  numberId     Int
+  number       number         @relation(fields: [numberId], references: [number])
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  client_dream client_dream[]
+}
+
+model client_dream {
+  id       Int    @id @default(autoincrement())
+  clientId Int
+  client   client @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  dreamId  Int
+  dream    dream  @relation(fields: [dreamId], references: [id])
+}
+
+model number {
+  number       Int            @id
+  hundreds     String
+  tens         String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  guess_number guess_number[]
+  dream        dream[]
+}
+
+model guess {
+  id           Int            @id @default(autoincrement())
+  clientId     Int
+  client       client         @relation(fields: [clientId], references: [id])
+  type         String
+  guess        String
+  createdAt    DateTime       @default(now())
+  updatedAt    DateTime       @updatedAt
+  guess_number guess_number[]
+}
+
+model guess_number {
+  id       Int    @id @default(autoincrement())
+  guessId  Int
+  guess    guess  @relation(fields: [guessId], references: [id], onDelete: Cascade)
+  numberId Int
+  number   number @relation(fields: [numberId], references: [number])
+}
+
+model post {
+  id        Int      @id @default(autoincrement())
+  bankId    Int
+  bank      bank     @relation(fields: [bankId], references: [id])
+  title     String?
+  content   Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
