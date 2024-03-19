@@ -52,8 +52,10 @@ function showRoutes() {
   });
 }
 
-app.listen(PORT, () => {
-  console.log(`Servidor está rodando na porta ${PORT}`);
-  showRoutes()
-  console.log(`_____ Resultado de Requisições _____`);
-});
+// app.listen(PORT, () => {
+//   console.log(`Servidor está rodando na porta ${PORT}`);
+//   showRoutes()
+//   console.log(`_____ Resultado de Requisições _____`);
+// });
+
+module.exports = app;
