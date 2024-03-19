@@ -35,23 +35,22 @@ app.use(process.env.API_PREFIX, [
   userRouter
 ]); 
 
-const PORT = process.env.PORT || 3000;
+// function showRoutes() {
+//   console.log('Rotas disponíveis:');
+//   app._router.stack.forEach((middleware) => {
+//     if (middleware.route) {
+//       const { methods, path } = middleware.route;
+//       console.log(`${Object.keys(methods).join(', ').toUpperCase()}: ${process.env.API_PREFIX}${path}`);
+//     } else if (middleware.name === 'router') {
+//       middleware.handle.stack.forEach((handler) => {
+//         const { methods, path } = handler.route;
+//         console.log(`${Object.keys(methods).join(', ').toUpperCase()}: ${process.env.API_PREFIX}${path}`);
+//       });
+//     }
+//   });
+// }
 
-function showRoutes() {
-  console.log('Rotas disponíveis:');
-  app._router.stack.forEach((middleware) => {
-    if (middleware.route) {
-      const { methods, path } = middleware.route;
-      console.log(`${Object.keys(methods).join(', ').toUpperCase()}: ${process.env.API_PREFIX}${path}`);
-    } else if (middleware.name === 'router') {
-      middleware.handle.stack.forEach((handler) => {
-        const { methods, path } = handler.route;
-        console.log(`${Object.keys(methods).join(', ').toUpperCase()}: ${process.env.API_PREFIX}${path}`);
-      });
-    }
-  });
-}
-
+// const PORT = process.env.PORT || 3000;
 // app.listen(PORT, () => {
 //   console.log(`Servidor está rodando na porta ${PORT}`);
 //   showRoutes()

@@ -9,9 +9,9 @@ serverlessApp.use(express.json());
 serverlessApp.use('/',app)
 
 
-// const router = Router();
-// router.get("/hello", (req, res) => res.send("Hello World!"));
+const router = Router();
+router.get("/hello", (req, res) => res.send("Hello World!"));
 
-// app.use("/", router);
+serverlessApp.use("/api", router);
 
 export const handler = serverless(serverlessApp);
