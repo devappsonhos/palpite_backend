@@ -6,7 +6,7 @@ const app = require('../../app/app')
 const serverlessApp = express();
 
 serverlessApp.use(express.json());
-serverlessApp.use('/api',app)
+serverlessApp.use('/',app)
 
 
 // const router = Router();
